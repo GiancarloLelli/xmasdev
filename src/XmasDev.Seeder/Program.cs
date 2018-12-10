@@ -9,6 +9,7 @@ namespace XmasDev.Seeder
     class Program
     {
         private static Random m_rand = new Random();
+
         static void Main(string[] args)
         {
             var client = new CrmServiceClient(ConfigurationManager.ConnectionStrings["CRM"].ConnectionString);
