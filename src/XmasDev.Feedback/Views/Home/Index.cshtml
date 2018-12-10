@@ -1,0 +1,39 @@
+﻿@model XmasDev.Feedback.Models.SaveFeedbackModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Santa Claus Feedback App</h1>
+    <p class="lead">Thanks for being a good kid! New spend just a few minutes to rate the gift that your good action got you.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+@if (!Model.None)
+{
+    if (Model.Success)
+    {
+        <div id="okMessage" class="alert alert-success" role="alert">Feedback submitted succesfully. Thanks!!</div>
+    }
+    else
+    {
+        <div id="koMessage" class="alert alert-danger" role="alert">There was an error sending the feedback. Sorry for the inconvenience</div>
+    }
+}
+
+<form method="post" action="/Home/SaveFeedback">
+    <div class="form-group">
+        <label for="imageName">Username</label>
+        <input name="UserCode" type="text" class="form-control" value="@Model.UserCode">
+    </div>
+    <div class="form-group">
+        <label for="podName">Product</label>
+        <input name="ProductCode" type="text" class="form-control" value="@Model.ProductCode">
+    </div>
+    <div class="form-group">
+        <label for="ns">Rating (1-5)</label>
+        <input name="Rating" type="range" min="1" max="5" class="form-control" placeholder="3">
+    </div>
+    <button type="submit" id="deployButton" class="btn btn-primary mb-2">Send</button>
+</form>
