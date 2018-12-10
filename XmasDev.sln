@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasDev.Feedback", "src\Xma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasDev.Plugin", "src\XmasDev.Plugin\XmasDev.Plugin.csproj", "{CA396F2E-EEDF-470F-9B11-17459D119383}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasDev.Seeder", "src\XmasDev.Seeder\XmasDev.Seeder.csproj", "{C38F06C0-E618-417A-B259-7BA1B5C622A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CA396F2E-EEDF-470F-9B11-17459D119383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA396F2E-EEDF-470F-9B11-17459D119383}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA396F2E-EEDF-470F-9B11-17459D119383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38F06C0-E618-417A-B259-7BA1B5C622A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38F06C0-E618-417A-B259-7BA1B5C622A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38F06C0-E618-417A-B259-7BA1B5C622A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38F06C0-E618-417A-B259-7BA1B5C622A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
