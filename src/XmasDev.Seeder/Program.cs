@@ -38,16 +38,17 @@ namespace XmasDev.Seeder
                 var kid = kids[m_rand.Next(0, 12)];
                 var gift = gifts[m_rand.Next(0, 18)];
                 var rate = m_rand.Next(1, 5);
+                var createdOnOverride = startDate.AddDays(iteration);
 
                 var entity = new Entity("xms_feedback");
                 entity["xms_name"] = $"Feedback for iteration #{iteration}";
                 entity["xms_usercode"] = kid;
                 entity["xms_productcode"] = gift;
                 entity["xms_rating"] = rate;
-                entity["overriddencreatedon"] = startDate.AddDays(iteration);
+                entity["overriddencreatedon"] = createdOnOverride;
 
                 client.Create(entity);
-                Console.WriteLine($"Created feedback item #{iteration} @ {startDate.ToString("dd-MM-yyyy")} AM");
+                Console.WriteLine($"Created feedback item #{iteration} @ {createdOnOverride.ToString("dd-MM-yyyy")} AM");
             }
         }
     }
