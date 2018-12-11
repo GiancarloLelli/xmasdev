@@ -30,10 +30,10 @@ namespace XmasDev.Loader
             {
                 var row = new RowModel
                 {
-                    Product = feedback.GetAttributeValue<string>("xms_usercode"),
+                    Product = feedback.GetAttributeValue<string>("xms_productcode"),
                     Rating = feedback.GetAttributeValue<int>("xms_rating"),
                     CreatedOn = feedback.GetAttributeValue<DateTime>("createdon"),
-                    User = feedback.GetAttributeValue<string>("xms_productcode")
+                    User = feedback.GetAttributeValue<string>("xms_usercode")
                 };
 
                 builder.AppendLine(row.ToString());
@@ -42,7 +42,7 @@ namespace XmasDev.Loader
             // Azure upload
             var storageAccount = CloudStorageAccount.Parse(ConfigurationHelper.StorageConnection);
             var blobClient = storageAccount.CreateCloudBlobClient();
-            var container = blobClient.GetContainerReference("usage");
+            var container = blobClient.GetContainerReference("input-files");
 
             if (container.CreateIfNotExists())
             {
@@ -50,7 +50,7 @@ namespace XmasDev.Loader
                 container.SetPermissions(perms);
             }
 
-            var blockBlob = container.GetBlockBlobReference("interactions.csv");
+            var blockBlob = container.GetBlockBlobReference("usage\\interactions.csv");
             blockBlob.UploadText(builder.ToString());
         }
     }

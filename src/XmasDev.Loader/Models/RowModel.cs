@@ -11,7 +11,7 @@ namespace XmasDev.Loader.Models
 
         public override string ToString()
         {
-            return $"{User},{Product},{CreatedOn.ToString("yyyy-MM-ddThh:MM:ss")},Purchase,{Rating}";
+            return $"{User},{Product},{CreatedOn.ToString("yyyy-MM-ddTHH:mm:ss")},,{Rating}";
         }
     }
 }
