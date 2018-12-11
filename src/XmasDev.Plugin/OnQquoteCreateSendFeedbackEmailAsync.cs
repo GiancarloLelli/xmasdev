@@ -13,7 +13,7 @@ namespace XmasDev.Plugin
             var context = serviceProvider.GetService(typeof(IPluginExecutionContext)) as IPluginExecutionContext;
             var factory = serviceProvider.GetService(typeof(IOrganizationServiceFactory)) as IOrganizationServiceFactory;
             var quote = context.InputParameters.ContainsKey("Target") ? context.InputParameters["Target"] as Entity : null;
-            var service = factory.CreateOrganizationService(null);
+            var service = factory.CreateOrganizationService(context.InitiatingUserId);
 
             // Gate checks
             if (context.Depth > 1 || !context.PrimaryEntityName.Equals("xms_gift") || quote == null)
