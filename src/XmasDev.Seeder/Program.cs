@@ -47,7 +47,7 @@ namespace XmasDev.Seeder
                 entity["overriddencreatedon"] = startDate.AddDays(iteration);
 
                 client.Create(entity);
-                Console.WriteLine($"Created feedback item #{iteration} @ {startDate.ToString("dd-MM-yyyy")}");
+                Console.WriteLine($"Created feedback item #{iteration} @ {startDate.ToString("dd-MM-yyyy")} AM");
             }
         }
     }
