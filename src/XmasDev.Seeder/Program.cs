@@ -30,6 +30,8 @@ namespace XmasDev.Seeder
                 "011", "012","013", "014", "015", "016","017", "018", "019"
             };
 
+            var startDate = new DateTime(2007, 12, 29, 9, 30, 00);
+
             // Randomizers
             foreach (var iteration in Enumerable.Range(0, 4000))
             {
@@ -42,9 +44,10 @@ namespace XmasDev.Seeder
                 entity["xms_usercode"] = kid;
                 entity["xms_productcode"] = gift;
                 entity["xms_rating"] = rate;
+                entity["overriddencreatedon"] = startDate.AddDays(iteration);
 
                 client.Create(entity);
-                Console.WriteLine($"Created feedback item #{iteration}");
+                Console.WriteLine($"Created feedback item #{iteration} @ {startDate.ToString("dd-MM-yyyy")}");
             }
         }
     }

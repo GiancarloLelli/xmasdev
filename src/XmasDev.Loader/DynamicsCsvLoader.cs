@@ -14,7 +14,7 @@ namespace XmasDev.Loader
     public static class DynamicsCsvLoader
     {
         [FunctionName("DynamicsCsvLoader")]
-        public static void Run([TimerTrigger("0 */50 * * * *")]TimerInfo myTimer, TraceWriter log)
+        public static void Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, TraceWriter log)
         {
             // Initialize Dynamics 365 client
             var client = new CrmServiceClient(ConfigurationHelper.ConnectionString);
