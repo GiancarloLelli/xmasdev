@@ -1,5 +1,6 @@
 ﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using System;
 
 namespace XmasDev.Plugin
@@ -15,14 +16,15 @@ namespace XmasDev.Plugin
             var service = factory.CreateOrganizationService(null);
 
             // Gate checks
-            if (context.Depth > 1 || !context.PrimaryEntityName.Equals("xms_gist") || quote == null)
+            if (context.Depth > 1 || !context.PrimaryEntityName.Equals("xms_gift") || quote == null)
                 return;
 
             // Gift references
-            var goodKid = quote.GetAttributeValue<EntityReference>("xms_customer");
+            var goodKid = quote.GetAttributeValue<EntityReference>("xms_kid");
             var product = quote.GetAttributeValue<EntityReference>("xms_product");
-            var userName = goodKid.Name;
-            var productName = product.Name;
+
+            var userName = service.Retrieve(goodKid.LogicalName, goodKid.Id, new ColumnSet("governmentid")).GetAttributeValue<string>("governmentid");
+            var productName = service.Retrieve(product.LogicalName, product.Id, new ColumnSet("productnumber")).GetAttributeValue<string>("productnumber");
 
             // Email subjects
             var fromParty = new Entity("activityparty");
