@@ -33,6 +33,7 @@ namespace XmasDev.Feedback.Controllers
             if (ModelState.IsValid)
             {
                 var entity = new Entity("xms_feedback");
+                entity["xms_name"] = $"Feedback for {model.ProductCode} by {model.UserCode}";
                 entity["xms_productcode"] = model.ProductCode;
                 entity["xms_usercode"] = model.UserCode;
                 entity["xms_rating"] = model.Rating;
