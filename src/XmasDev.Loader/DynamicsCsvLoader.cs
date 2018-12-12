@@ -52,6 +52,9 @@ namespace XmasDev.Loader
 
             var blockBlob = container.GetBlockBlobReference("usage\\interactions.csv");
             blockBlob.UploadText(builder.ToString());
+
+            // SB Notification
+            // await ServiceBusNotifier.Notify();
         }
     }
 }
