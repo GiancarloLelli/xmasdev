@@ -1,9 +1,6 @@
-﻿using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Tooling.Connector;
-using System;
-using System.Configuration;
+﻿using System;
+using System.IO;
 using System.Linq;
-using System.Net;
 
 namespace XmasDev.Seeder
 {
@@ -13,15 +10,15 @@ namespace XmasDev.Seeder
 
         static void Main(string[] args)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            var client = new CrmServiceClient(ConfigurationManager.ConnectionStrings["CRM"].ConnectionString);
+            // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            // var client = new CrmServiceClient(ConfigurationManager.ConnectionStrings["CRM"].ConnectionString);
 
             // Possible options
             var kids = new string[]
             {
-                "BTJWDR97H61C137D", "GTHZDS70E31C141G",  "GDVQVP89M07E873N", "RRTCBD43D58F693T", "KGKTGR58B64M023P", "ZZGBRF53L01H706G",
-                "RWQVNZ47C67M282U", "TLTNDG83A54D264V", "GFDRLP87S25A057J", "NKLHDE50A69G661Q", "TRTDBS76E50B477I",
-                "PCVMBW31R31E114E", "SVZWFU93P06C807J"
+                "BJLRMK67A28B195V", "BVZSCD82E06E251Z",  "DZZYOI85M64I172T", "FDUGJH68H10A606I", "LKVWNC79H68G570H", "MHLCBP74C10L230Q",
+                "NVHRCD78M09D590Rv", "PBWDDP73T41A108E", "GFDRLP87S25A057J", "RPMDRG98P67I683V", "TGRMQN98E55H429Y",
+                "TQBNSA70R23C443H", "VTGYDT32T21D643S", "XSLTNK44E11C034E"
             };
 
             var gifts = new string[]
@@ -30,24 +27,19 @@ namespace XmasDev.Seeder
                 "011", "012","013", "014", "015", "016","017", "018", "019"
             };
 
-            var startDate = new DateTime(2007, 12, 29, 9, 30, 00);
+            var events = new string[] { "Click", "RecommendationClick", "AddShopCart", "RemoveShopCart", "Purchase" };
+
+            var startDate = new DateTime(1936, 11, 27, 9, 30, 00);
 
             // Randomizers
-            foreach (var iteration in Enumerable.Range(0, 4000))
+            foreach (var iteration in Enumerable.Range(0, 30000))
             {
-                var kid = kids[m_rand.Next(0, 12)];
+                var kid = kids[m_rand.Next(0, 13)];
                 var gift = gifts[m_rand.Next(0, 18)];
-                var rate = m_rand.Next(1, 5);
+                var eventType = events[m_rand.Next(0, 4)];
                 var createdOnOverride = startDate.AddDays(iteration);
 
-                var entity = new Entity("xms_feedback");
-                entity["xms_name"] = $"Feedback for iteration #{iteration}";
-                entity["xms_usercode"] = kid;
-                entity["xms_productcode"] = gift;
-                entity["xms_rating"] = rate;
-                entity["overriddencreatedon"] = createdOnOverride;
-
-                client.Create(entity);
+                File.AppendAllText("Transactions.csv", $"{kid},{gift},{createdOnOverride.ToString("yyyy-MM-ddTHH:mm:ss")},{eventType}{Environment.NewLine}");
                 Console.WriteLine($"Created feedback item #{iteration} @ {createdOnOverride.ToString("dd-MM-yyyy")} AM");
             }
         }
